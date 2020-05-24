@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zpark.dao.RoleDao">
+
+
+<select id="queryRole" resultType="role">
+    select t1.id as id,t1.name as name
+    from t_role t1 left join t_user_role t2 on t1.id = t2.role_id
+    where t2.user_id = #{id}
+</select>
+
+</mapper>

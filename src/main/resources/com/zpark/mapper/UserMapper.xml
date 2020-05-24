@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zpark.dao.UserDao">
+
+    <select id="queryAllByPage" resultType="user">
+        select id,username,password,salt
+        from t_user
+        limit #{start},#{size}
+    </select>
+
+    <select id="count" resultType="Integer">
+        select count(id)
+        from t_user
+    </select>
+
+    <select id="login" resultType="user">
+        select id,username,password,salt
+        from t_user
+        where username = #{username}
+    </select>
+
+    <insert id="addUser">
+        insert into
+        t_user
+        values(#{id},#{username},#{password},#{salt})
+    </insert>
+
+
+    <update id="updateUser">
+        update
+        t_user
+        set username=#{username},password=#{password},salt=#{salt}
+        where id=#{id}
+    </update>
+
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zpark.dao.CommentDao">
+
+    <select id="queryAll" resultType="comment">
+        select id,content,time
+        from t_comment
+    </select>
+
+    <select id="queryAllByPage" resultType="comment">
+        select t1.id,t1.content,t1.time
+        from t_comment t1
+        limit #{start},#{size}
+    </select>
+
+    <select id="count" resultType="Integer">
+        select count(id)
+        from t_comment
+    </select>
+
+    <insert id="addComment">
+        insert into
+        t_comment
+        values(#{id},#{content},#{time})
+    </insert>
+
+    <delete id="delComment">
+        delete
+        from t_comment
+        where id=#{id}
+    </delete>
+</mapper>
